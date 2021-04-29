@@ -1,6 +1,86 @@
-<h1>
-  Web Worker example app
-</h1>
-<button routerLink="/">To Home</button>
-<button routerLink="/list">To List</button>
-<router-outlet></router-outlet>
+<div class="container">
+  <h1>A guide to use web worker in angular app</h1>
+  <h3>
+    In this sample i will demonstrate the usage of web workers in javascript and how they can help you in the case when
+    you have
+    many complex and time taking tasks to perform on your frontend.
+  </h3>
+  <p>
+    Web Worker helps to offload the task to worker thread. this will save the main thread from running a complex task.
+    <br>
+    This process will be explained using a fibonnaci program.
+    <br>
+    Here I have two sample input which will find the fibonnaci number using a recursive algorithm. one sample will run
+    on the same thread where our present code is executing and the other sample will run on a separate thread.
+    <br>
+    I Have added some dummy checkbox,range,and radio inputs to show that if we run a complex task on main thread
+    everything will freeze.
+  </p>
+  <br>
+  <h3>
+  </h3>
+</div>
+<div class="form_wrapper">
+  <label> Will Run In Same Thread
+    <input type="number" #inp placeholder="Enter any number(same thread version)">
+  </label>
+  <button (click)="fibonacSameThread(+inp.value)">Run </button>
+</div>
+<div class="form_wrapper__output"> Result: {{sameThreadOutput}}
+  <h3><span [ngStyle]="{color:'red'}">Note !</span> This will freeze the UI if you enter a big number try not to add
+    number greater than 100. then you whole system may freeze
+    <br>
+    <br>
+    <br>
+    Try To use the checkbox,range,radio nothing will work even this input and button will also not work
+    <br>
+    <br>
+    <br>
+    To Resolve/handle this i will run this same function in worker thread
+  </h3>
+</div>
+
+<div>
+  <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+  <label for="vehicle1"> I have a bike</label><br>
+  <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+  <label for="vehicle2"> I have a car</label><br>
+  <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+  <label for="vehicle3"> I have a boat</label><br><br>
+</div>
+<div>
+  <input type="radio" id="male" name="gender" value="male">
+  <label for="male">Male</label><br>
+  <input type="radio" id="female" name="gender" value="female">
+  <label for="female">Female</label><br>
+  <input type="radio" id="other" name="gender" value="other">
+  <label for="other">Other</label>
+</div>
+<div>
+  <label for="points">Points (between 0 and 10):</label>
+  <input type="range" id="points" name="points" min="0" max="10">
+</div>
+
+<div class="form_wrapper">
+  <label> Will Run In Worker Thread
+    <input type="number" #inputNum placeholder="Enter any number" />
+  </label>
+  <button (click)="calcFib(+inputNum.value)">Calc. Fib</button>
+</div>
+<div class="form_wrapper__output">
+  Result: {{output}}
+  <h3>
+    <span [ngStyle]="{color:'green'}">Note !</span>
+    You can use the website easily UI will Not freeze
+    checkbox,radio,range everything will run.
+    <br>
+    <br>
+    everything will run smoothly on the main thread.
+    this is the power of worker thread
+    for more indepth usage visit this <a target="_blank"
+      href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers">link</a>
+  </h3>
+</div>
+<!-- <div class="loader_container">
+  <div class="loader"></div>
+</div> -->
