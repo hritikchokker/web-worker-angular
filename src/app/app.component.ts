@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'web-worker-angular';
   output: any;
   webWorker!: Worker;
@@ -31,6 +35,10 @@ export class AppComponent implements OnInit {
   fibonacSameThread(num: number): void {
     const result = this.fibonacci(num);
     this.sameThreadOutput = result;
+  }
+
+  ngOnDestroy(): void {
+    this.webWorker.terminate();
   }
 
 
