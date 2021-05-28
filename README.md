@@ -1,5 +1,5 @@
 # WebWorkerAngular
-# [link](https://web-worker-angular.vercel.app/)
+<!-- # [link](https://web-worker-angular.vercel.app/) -->
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.1.
 
